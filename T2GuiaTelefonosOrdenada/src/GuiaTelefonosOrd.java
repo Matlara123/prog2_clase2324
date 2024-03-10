@@ -9,7 +9,7 @@ public class GuiaTelefonosOrd {
 		numContactos = 0;
 	}
 
-	// Añadir contacto
+	// AÃ±adir contacto
 	public void poner(Contacto contacto) {
 		if (numContactos < guia.length) {     // hay sitio
 			int i;
@@ -25,21 +25,30 @@ public class GuiaTelefonosOrd {
 
 	// Eliminar contacto
 	public void quitar(Contacto contacto) {
-		//TO-DO
+		int i;
+		for (i = 0; i < numContactos && !(guia[i].getNombre().equals(contacto.getNombre())); i++){}
+		if (i < numContactos) {
+			for (int j = i; j < numContactos - 1; j++) {
+				guia[j] = guia[j+1];
+			}
+		}
 	}
 
 	// Presentar con formato
 	public String toString() {
 		String texto = "";
 		for (int k = 0; k < numContactos; k++) {  // procesar todos
-			texto = texto + guia[k] + "\n";       // un contacto por línea
+			texto = texto + guia[k] + "\n";       // un contacto por lÃ­nea
 		}
 		return texto;
 	}
 
-	// Búsquedas
+	// BÃºsquedas
 	public Contacto buscarNombre(String nombre) {
-		//TO-DO
+		int i;
+		for (i = 0; i < numContactos && !(guia[i].getNombre().equals(nombre)); i++){}
+		if (i < numContactos)
+			return guia[i];
 		return null;
 	}
 	
@@ -51,8 +60,8 @@ public class GuiaTelefonosOrd {
 		return con;
 	}
 	
-	// POST: busca un contacto con el nombre dado, y sustituye su número
-	// por el número dado como entrada, si existe
+	// POST: busca un contacto con el nombre dado, y sustituye su nÃºmero
+	// por el nÃºmero dado como entrada, si existe
 	public void reemplazar(String nombre, long numero) {
 		//int i;
 		//for(i=0; i < numContactos && !guia[i].igualNombre(nombre); i++);
@@ -62,8 +71,8 @@ public class GuiaTelefonosOrd {
 			contacto.setNumero(numero);
 	}
 	
-	// POST: devolver el número de telefonos de Madrid que hay en la guía
-	// un teléfono es de Madrid si empieza por "91" o "3491"
+	// POST: devolver el nÃºmero de telefonos de Madrid que hay en la guÃ­a
+	// un telÃ©fono es de Madrid si empieza por "91" o "3491"
 	public int contarTelefonosMadrid() {
 		int contador = 0;
 		for (int i = 0; i < numContactos; i++) {
@@ -75,7 +84,7 @@ public class GuiaTelefonosOrd {
 	}
 	
 	public Contacto[] getTelefonosMadrid() {
-		// creamos el vector resultado con el tamaño necesario
+		// creamos el vector resultado con el tamaÃ±o necesario
 		
 		Contacto[] resultado = new Contacto[contarTelefonosMadrid()];
 		
